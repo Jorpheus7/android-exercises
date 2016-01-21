@@ -1,5 +1,6 @@
 package fr.android.androidexercises;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 public class BookActivity extends AppCompatActivity {
 
     private String bookName = "Garry Whopper";
+    private int resultCode = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,12 @@ public class BookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO set result to book name in intent
+                Intent backIntent = new Intent();
+                backIntent.putExtra("bookName", bookName);
+                BookActivity.this.setResult(resultCode, backIntent);
 
                 // TODO finish current activity
-
+                finish();
             }
         });
     }
