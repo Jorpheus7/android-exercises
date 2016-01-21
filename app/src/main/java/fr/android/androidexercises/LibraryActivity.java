@@ -2,6 +2,7 @@ package fr.android.androidexercises;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class LibraryActivity extends AppCompatActivity {
+
+    private static final String BOOK = "BOOK";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +23,14 @@ public class LibraryActivity extends AppCompatActivity {
 
         Button openButton = (Button) findViewById(R.id.openButton);
 
-        Book book = new Book("Garry Whopper", "CK Rowling");
+        final Book book = new Book("Garry Whopper", "CK Rowling");
 
         openButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LibraryActivity.this, BookActivity.class);
                 // Add book to intent
+                intent.putExtra(BOOK, book);
                 startActivity(intent);
             }
         });
